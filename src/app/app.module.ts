@@ -59,7 +59,29 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'followers/:username', // move more specific routes to the top
+        component: GithubProfileComponent
+      },
+      {
+        path: 'followers',
+        component: GithubFollowersComponent
+      },
+      {
+        path: 'posts',
+        component: PostsComponent
+      },
+      {
+        path: '**',
+        component: NotFoundComponent
+      } // order is important, putting this first in the route array means we're only going to see the NotFoundComponent for every route
+    ])
   ],
   providers: [
     PostService,
