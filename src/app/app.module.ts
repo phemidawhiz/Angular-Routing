@@ -66,7 +66,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         component: HomeComponent
       },
       {
-        path: 'followers/:username', // move more specific routes to the top
+        path: 'followers/:userid/:username', // move more specific routes to the top
         component: GithubProfileComponent
       },
       {
