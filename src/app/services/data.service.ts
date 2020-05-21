@@ -19,10 +19,10 @@ export class DataService {
       .catch(this.handleError);
   }
 
-  get(id) { 
+  get(id) {
     return this.http.get(this.url + '/' + id)
       .map(response => response.json())
-      .catch(this.handleError);    
+      .catch(this.handleError);
   }
 
   create(resource) {
@@ -33,7 +33,7 @@ export class DataService {
 
   update(resource) {
     return this.http.patch(this.url + '/' + resource.id, JSON.stringify({ isRead: true }))
-      .map(response => response.json())      
+      .map(response => response.json())
       .catch(this.handleError);
   }
 
@@ -45,12 +45,14 @@ export class DataService {
   }
 
   private handleError(error: Response) {
-    if (error.status === 400)
+    if (error.status === 400) {
       return Observable.throw(new BadInput(error.json()));
-  
-    if (error.status === 404)
+    }
+
+    if (error.status === 404) {
       return Observable.throw(new NotFoundError());
-    
+    }
+
     return Observable.throw(new AppError(error));
   }
 }
